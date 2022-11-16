@@ -22,6 +22,13 @@ defmodule URLShortenerWeb.FallbackController do
     |> render(:"404")
   end
 
+  def call(conn, {:error, "record not found"}) do
+    conn
+    |> put_status(:not_found)
+    |> put_view(URLShortenerWeb.ErrorView)
+    |> render(:"404")
+  end
+
   def call(conn, {:error, message}) when is_binary(message) do
     conn
     |> put_resp_content_type("application/json")
