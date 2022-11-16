@@ -2,6 +2,9 @@ name: Database - All Migration Rollbackable
 
 on: pull_request
 
+env:
+  HOST_NAME: "http://localhost:4000/"
+
 jobs:
   tests_and_coverage:
     runs-on: ubuntu-latest

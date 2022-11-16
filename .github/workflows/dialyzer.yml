@@ -2,6 +2,9 @@ name: Dialyzer
 
 on: pull_request
 
+env:
+  HOST_NAME: "http://localhost:4000/"
+
 jobs:
   dialyzer:
     runs-on: ubuntu-latest

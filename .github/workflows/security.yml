@@ -2,6 +2,9 @@ name: Security
 
 on: pull_request
 
+env:
+  HOST_NAME: "http://localhost:4000/"
+
 jobs:
   security:
     runs-on: ubuntu-latest

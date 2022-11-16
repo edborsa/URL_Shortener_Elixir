@@ -1,5 +1,8 @@
 name: Compilation
 
+env:
+  HOST_NAME: "http://localhost:4000/"
+
 on: pull_request
 
 jobs:

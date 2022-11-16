@@ -2,6 +2,9 @@ name: Lint
 
 on: pull_request
 
+env:
+  HOST_NAME: "http://localhost:4000/"
+
 jobs:
   lint:
     runs-on: ubuntu-latest

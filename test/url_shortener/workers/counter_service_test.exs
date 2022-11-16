@@ -1,8 +1,8 @@
 defmodule URLShortener.Workers.CounterServiceTest do
   use ExUnit.Case
   use URLShortener.DataCase, async: false
-  alias URLShortener.CounterService
   alias Ecto.Adapters.SQL.Sandbox
+  alias URLShortener.CounterService
 
   describe "bulk_create_suppliers/0" do
     setup _context do

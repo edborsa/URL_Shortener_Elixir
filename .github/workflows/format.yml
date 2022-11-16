@@ -2,6 +2,9 @@ name: Verify Format
 
 on: pull_request
 
+env:
+  HOST_NAME: "http://localhost:4000/"
+
 jobs:
   check_format:
     runs-on: ubuntu-latest

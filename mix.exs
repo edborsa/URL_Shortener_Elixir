@@ -72,7 +72,7 @@ defmodule URLShortener.MixProject do
       # CSS
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
 
-      #CSV
+      # CSV
       {:csv, "~> 2.4"}
     ]
   end
