@@ -1,0 +1,44 @@
+<div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <.form
+        let={f}
+        for={:short_url_form}
+        id="short_url_gen_form"
+        phx-submit="generate_short_url"
+        class="space-y-6"
+      >
+        <%= label(f, "Plase Input Your URL", class: "block text-sm font-medium text-gray-700") %>
+        <%= url_input(f, :url,
+          class:
+            "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+        ) %>
+        <%= error_tag(f, :url) %>
+
+        <div>
+          <%= submit("Generate Short URL",
+            phx_disable_with: "Saving...",
+            class:
+              "flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          ) %>
+        </div>
+      </.form>
+    </div>
+    <%= if @short_url != "" do %>
+      <div class="bg-white">
+        <div class="mx-auto max-w-7xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+          <div class="text-center">
+            <h2 class="text-lg font-semibold">Your Short Link</h2>
+            <%= link(System.get_env("HOST_NAME") <> @short_url,
+              to: @short_url,
+              class: "mx-auto mt-5 max-w-xl text-xl text-blue-500 underline"
+            ) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <%= link("Go to Stats", to: "/stats", class: "text-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2") %>
+    </div>
+  </div>
+</div>
