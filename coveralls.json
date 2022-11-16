@@ -1,0 +1,19 @@
+{
+  "skip_files": [
+    "test/support",
+    "lib/live_view_themes_web/endpoint.ex",
+    "lib/live_view_themes_web/gettext.ex",
+    "lib/url_shortner/application.ex",
+    "lib/url_shortener_web.ex",
+    "lib/url_shortener_web/telemetry.ex",
+    "lib/url_shortener_web/views/error_helpers",
+    "lib/url_shortener_web/controllers/fallback_controller.ex",
+    "lib/url_shortener_web/views/error_view.ex",
+    "lib/url_shortener_web/views/error_helper "
+  ],
+  "coverage_options": {
+    "treat_no_relevant_lines_as_covered": true,
+    "output_dir": "cover/",
+    "minimum_coverage": 65
+  }
+}

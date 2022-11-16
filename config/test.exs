@@ -20,9 +20,6 @@ config :url_shortener, URLShortenerWeb.Endpoint,
   secret_key_base: "OukOF7dJc/GTRZAM/D46NjCRzkL6PfSjM4he941bA7XPAad5+2JrdCgWA0p54nby",
   server: false
 
-# In test we don't send emails.
-config :url_shortener, URLShortener.Mailer, adapter: Swoosh.Adapters.Test
-
 # Print only warnings and errors during test
 config :logger, level: :warn
 
