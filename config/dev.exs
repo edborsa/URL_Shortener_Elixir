@@ -5,10 +5,18 @@ config :url_shortener, URLShortener.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "db",
+  # hostname: "localhost",
   database: "url_shortener_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
+
+System.get_env("HOST_NAME") ||
+  raise """
+  environment variable HOST_NAME is missing.
+  For example: SERVER_HOST=http://localhost:4000/
+  Did you forgot to source the .env?
+  """
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
