@@ -7,18 +7,21 @@ defmodule URLShortener.Application do
 
   @impl true
   def start(_type, _args) do
-    children = [
-      # Start the Ecto repository
-      URLShortener.Repo,
-      # Start the Telemetry supervisor
-      URLShortenerWeb.Telemetry,
-      # Start the PubSub system
-      {Phoenix.PubSub, name: URLShortener.PubSub},
-      # Start the Endpoint (http/https)
-      URLShortenerWeb.Endpoint
-      # Start a worker by calling: URLShortener.Worker.start_link(arg)
-      # {URLShortener.Worker, arg}
-    ]
+    children =
+      [
+        # Start the Ecto repository
+        URLShortener.Repo,
+        # Start the Telemetry supervisor
+        URLShortenerWeb.Telemetry,
+        # Start the PubSub system
+        {Phoenix.PubSub, name: URLShortener.PubSub},
+        # Start the Endpoint (http/https)
+        URLShortenerWeb.Endpoint
+        # Start a worker by calling: URLShortener.Worker.start_link(arg)
+      ] ++
+        if Mix.env() != :test,
+          do: [{URLShortener.CounterServiceSupervisor, name: CounterServiceSupervidor}],
+          else: []
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
