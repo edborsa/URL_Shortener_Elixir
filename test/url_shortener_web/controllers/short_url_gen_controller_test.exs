@@ -9,7 +9,7 @@ defmodule UrlShortenerWeb.ShortUrlGenControllerTest do
       :ok
     end
 
-    test "SUCCESS: Redirect to long url", %{conn: conn} do
+    test "SUCCESS: Generates a short_url from the long_url", %{conn: conn} do
       conn =
         post(conn, Routes.short_url_gen_path(conn, :create, %{"url" => "https://google.com/"}))
 
@@ -18,7 +18,7 @@ defmodule UrlShortenerWeb.ShortUrlGenControllerTest do
       assert url =~ System.get_env("HOST_NAME")
     end
 
-    test "ERROR: Redirect to long url", %{conn: conn} do
+    test "ERROR: Returns error when input is not a valid URL", %{conn: conn} do
       conn = post(conn, Routes.short_url_gen_path(conn, :create, %{"url" => "foo"}))
 
       assert response = json_response(conn, 422)

@@ -13,6 +13,13 @@ config :url_shortener, URLShortener.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
+System.get_env("HOST_NAME") ||
+  raise """
+  environment variable HOST_NAME is missing.
+  For example: SERVER_HOST=http://localhost:4000/
+  Did you forgot to source the .env?
+  """
+
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :url_shortener, URLShortenerWeb.Endpoint,

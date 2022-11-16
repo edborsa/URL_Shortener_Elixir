@@ -11,13 +11,14 @@ defmodule URLShortener.Workers.CounterServiceTest do
       %{counter_pid: pid}
     end
 
+    # This here is the expected behavior for Mix.env() != :test
     test "SUCCESS: Process is start when application bots" do
       assert {:error, {:already_started, pid}} = CounterService.start_link([])
       assert Process.alive?(pid)
       CounterService.stop()
     end
 
-    test "SUCCESS: Counter Service Current Value is increased after getting next num", %{
+    test "SUCCESS: Counter Service current_value is increased after getting next num", %{
       counter_pid: pid
     } do
       previous_state = CounterService.get_state(pid)
