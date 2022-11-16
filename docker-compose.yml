@@ -1,0 +1,19 @@
+version: "3"
+services:
+  app:
+    build:
+      context: .
+    command: /bin/sh docker_dev_start.sh
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    links:
+      - db
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    ports:
+      - "5432:5432"
