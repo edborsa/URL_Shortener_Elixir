@@ -3,6 +3,7 @@ services:
   app:
     build:
       context: .
+    env_file: .env
     command: /bin/sh docker_dev_start.sh
     ports:
       - "4000:4000"

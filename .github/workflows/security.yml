@@ -1,9 +1,12 @@
-name: Dialyzer
+name: Security
 
 on: pull_request
 
+env:
+  HOST_NAME: "http://localhost:4000/"
+
 jobs:
-  dialyzer:
+  security:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -16,12 +19,12 @@ jobs:
           elixir-version: ${{ matrix.elixir }}
           otp-version: ${{ matrix.otp }}
       - uses: actions/cache@v1
-        id: mix-cache-dialyzer
+        id: mix-cache-security
         with:
           path: deps
           key: ${{ runner.os }}-${{ matrix.otp}}-%{{ matrix.elixir }}-mix-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
       - name: Install Mix depencies
-        if: steps.mix-cache-dialyzer.outputs.cache-hit != 'true'
+        if: steps.mix-cache-security.outputs.cache-hit != 'true'
         run: mix deps.get
-      - name: ====> dialyzer
-        run: mix dialyzer
+      - name: ====> security
+        run: mix sobelow --config

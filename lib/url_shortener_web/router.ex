@@ -17,13 +17,18 @@ defmodule URLShortenerWeb.Router do
   scope "/", URLShortenerWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    live "/", URLShortenerLive.Index, :index
+    live "/stats", URLShortenerLive.Stats, :stats
+
+    get "/:short_url", RedirectController, :redirect
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", URLShortenerWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", URLShortenerWeb do
+    pipe_through :api
+    post "/gen_short_url", ShortURLGenController, :create
+    post "/export", ExportController, :create
+  end
 
   # Enables LiveDashboard only for development
   #

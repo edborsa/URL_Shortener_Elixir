@@ -1,6 +1,9 @@
-name: Tests and Coverage
+name: Database - All Migration Rollbackable
 
 on: pull_request
+
+env:
+  HOST_NAME: "http://localhost:4000/"
 
 jobs:
   tests_and_coverage:
@@ -28,7 +31,7 @@ jobs:
           mix deps.get
           mix ecto.create
       - name: ====> test
-        run: mix coveralls.html
+        run: mix ecto.create && mix ecto.migrate && mix ecto.rollback --all
     services:
       pg:
         image: postgres:12
