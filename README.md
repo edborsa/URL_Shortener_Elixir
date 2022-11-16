@@ -29,3 +29,13 @@ config :url_shortener, URLShortener.Repo,
 - Be sure that you don't have anything running on http://localhost:4000/.
 - Be sure that you that default port for POSTGRES is available, A.K.A port 5432.
 - run: `docker-compose up --build`.
+
+To test the api endpont, perform a request:
+
+```curl
+curl --location --request POST 'http://localhost:4000/api/gen_short_url' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "url": "https://www.google.com/"
+}'
+```
