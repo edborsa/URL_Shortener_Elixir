@@ -41,4 +41,5 @@ defmodule URLShortenerWeb.UrlShortenerLive.IndexTest do
              |> render_submit()
              |> Kernel.=~("Your Short Link")
     end
+  end
 end
