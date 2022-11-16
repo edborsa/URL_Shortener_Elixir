@@ -1,7 +1,9 @@
 defmodule URLShortener.Helpers.Encoder do
-  def encode_base_62(num) when is_integer(num) do
+  def encode_base_62(num) when is_integer(num) and num >= 0 do
     encode_base_62(num, "")
   end
+
+  def encode_base_62(_), do: {:error, "can't encode input"}
 
   defp encode_base_62(num, acc) when num < 62 do
     new_char = Enum.at(base_62_graphemes(), rem(num, 62))
