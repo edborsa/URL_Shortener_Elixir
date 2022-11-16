@@ -11,11 +11,13 @@ defmodule UrlShortenerWeb.ExportControllerTest do
       :ok
     end
 
-    test "SUCCESS: Redirect to long url", %{conn: conn} do
-      {:ok, url} = URLStore.create_mapped_url(%{"long_url" => "https://google.com/"})
+    test "SUCCESS: Can export CSV file for mapped URLS", %{conn: conn} do
+      {:ok, _url} = URLStore.create_mapped_url(%{"long_url" => "https://google.com/"})
       conn = post(conn, Routes.export_path(conn, :create))
       assert response = response(conn, 200)
       assert response =~ "long_url,short_url,visited\r\n"
+      assert response =~ "https://google.com/"
+      assert response =~ "0"
     end
   end
 end
